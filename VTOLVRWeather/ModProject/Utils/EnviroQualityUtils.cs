@@ -24,6 +24,13 @@ public static class EnviroQualityUtils
 
         // Create a new ScriptableObject instance to receive the JSON data
         EnviroQuality enviroQuality = ScriptableObject.CreateInstance<EnviroQuality>();
+        enviroQuality.auroraOverride = new EnviroAuroraQualitySettings();
+        enviroQuality.effectsOverride = new EnviroEffectsQualitySettings();
+        enviroQuality.flatCloudsOverride = new EnviroFlatCloudsQualitySettings();
+        enviroQuality.skyOverride = new EnviroSkyQualitySettings();
+        enviroQuality.volumetricCloudsOverride = new EnviroVolumetricCloudsQualitySettings();
+        enviroQuality.fogOverride = new EnviroFogQualitySettings();
+        
         switch (quality)
         {
             case Quality.Low:
@@ -31,21 +38,21 @@ public static class EnviroQualityUtils
                 TextAsset lowJsonAsset =
                     ModUtils.LoadFromAssetBundle<TextAsset>(assetBundleName, "EnviroQualityLowSettings.json");
                 string lowQualityJsonText = lowJsonAsset.text;
-                JsonUtility.FromJsonOverwrite(lowQualityJsonText, quality);
+                JsonUtility.FromJsonOverwrite(lowQualityJsonText, enviroQuality);
                 break;
 
             case Quality.Medium:
                 TextAsset mediumJsonAsset =
                     ModUtils.LoadFromAssetBundle<TextAsset>(assetBundleName, "EnviroQualityMediumSettings.json");
                 string mediumQualityJsonText = mediumJsonAsset.text;
-                JsonUtility.FromJsonOverwrite(mediumQualityJsonText, quality);
+                JsonUtility.FromJsonOverwrite(mediumQualityJsonText, enviroQuality);
                 break;
 
             case Quality.High:
                 TextAsset highJonAsset =
                     ModUtils.LoadFromAssetBundle<TextAsset>(assetBundleName, "EnviroQualityHighSettings.json");
                 string highQualityJsonText = highJonAsset.text;
-                JsonUtility.FromJsonOverwrite(highQualityJsonText, quality);
+                JsonUtility.FromJsonOverwrite(highQualityJsonText, enviroQuality);
                 break;
         }
 

@@ -81,6 +81,9 @@ namespace DaftAppleGames.WeatherMod;
 
         enviroManager.Objects.directionalLight = sun.GetComponent<Light>();
         enviroManager.Objects.additionalDirectionalLight = moon.GetComponent<Light>();
+        enviroManager.Objects.sun = sun;
+        enviroManager.Objects.moon = moon;
+        
         EnviroReflectionProbe reflectionProbe = _skyInstance.GetComponentInChildren<EnviroReflectionProbe>(true);
         enviroManager.Objects.globalReflectionProbe = reflectionProbe;
 
