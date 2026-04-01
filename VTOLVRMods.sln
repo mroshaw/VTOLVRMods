@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityExplorerWrapper", "VTOLVRUnityExplorerWrapper\UnityExplorerWrapper.csproj", "{A20FEC23-D7C0-4C3E-ADAF-BB676599C07E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMod", "VTOLVRWeather\ModProject\WeatherMod.csproj", "{F9BB613F-1C58-43C2-ABA3-94578349C762}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A20FEC23-D7C0-4C3E-ADAF-BB676599C07E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20FEC23-D7C0-4C3E-ADAF-BB676599C07E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A20FEC23-D7C0-4C3E-ADAF-BB676599C07E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20FEC23-D7C0-4C3E-ADAF-BB676599C07E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9BB613F-1C58-43C2-ABA3-94578349C762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9BB613F-1C58-43C2-ABA3-94578349C762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9BB613F-1C58-43C2-ABA3-94578349C762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9BB613F-1C58-43C2-ABA3-94578349C762}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
