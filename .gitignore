@@ -1,0 +1,12 @@
+# Rider
+.idea/
+*.DotSettings.user
+
+# Build related files
+**/bin/
+**/obj/
+
+# Unity projects - ignore 3rd party assets, only keep _project
+**/Assets/*
+!**/Assets/_Project/
+!**/Assets/_Project/**
