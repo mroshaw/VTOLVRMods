@@ -11,8 +11,6 @@ public class BuildAssetBundles
             BuildTarget.StandaloneWindows64);
 
         // Deploy bundles
-        File.Copy("Assets/_Project/AssetBundles/unistormassetbundle",
-            "E:/Dev/DAG/VTOLVRMods/VTOLVRWeather/ModProject/lib/unistormassetbundle", true);
         File.Copy("Assets/_Project/AssetBundles/enviroassetbundle",
             "E:/Dev/DAG/VTOLVRMods/VTOLVRWeather/ModProject/lib/enviroassetbundle", true);
 

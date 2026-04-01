@@ -155,110 +155,122 @@ namespace DaftAppleGames.WeatherMod;
                     Log("Audio module is null. Skipping settings import");
                     return;
                 }
+
                 enviroManager.Audio.Settings = new EnviroAudio();
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Audio);
                 break;
-            
+
             case "EnviroAuroraModule":
                 if (!enviroManager.Aurora)
                 {
                     Log("Aurora module is null. Skipping settings import");
                     return;
                 }
+
                 enviroManager.Aurora.Settings = new EnviroAurora();
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Aurora);
                 break;
-            
+
             case "EnviroEffectsModule":
                 if (!enviroManager.Effects)
                 {
                     Log("Effects module is null. Skipping settings import");
                     return;
                 }
+
                 enviroManager.Effects.Settings = new EnviroEffects();
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Effects);
                 break;
-            
+
             case "EnviroEnvironmentModule":
                 if (!enviroManager.Environment)
                 {
                     Log("Environment module is null. Skipping settings import");
                     return;
                 }
+
                 enviroManager.Environment.Settings = new EnviroEnvironment();
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Environment);
                 break;
-            
+
             case "EnviroFlatCloudsModule":
                 if (!enviroManager.FlatClouds)
                 {
                     Log("FlatClouds module is null. Skipping settings import");
                     return;
                 }
+
                 enviroManager.FlatClouds.settings = new EnviroFlatClouds();
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.FlatClouds);
                 break;
-            
+
             case "EnviroFogModule":
                 if (!enviroManager.Fog)
                 {
                     Log("Fog module is null. Skipping settings import");
                     return;
                 }
+
                 EnviroFogUtils.Configure(enviroManager, AssetBundleName);
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Fog);
                 break;
-            
+
             case "EnviroLightingModule":
                 if (!enviroManager.Lighting)
                 {
                     Log("Lighting module is null. Skipping settings import");
                     return;
                 }
+
                 EnviroLightingUtils.Configure(enviroManager);
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Lighting);
                 break;
-            
+
             case "EnviroLightningModule":
                 if (!enviroManager.Lightning)
                 {
                     Log("Lightning module is null. Skipping settings import");
                     return;
                 }
+
                 enviroManager.Lightning.Settings = new EnviroLightning();
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Lightning);
                 break;
-            
+
             case "EnviroQualityModule":
                 if (!enviroManager.Quality)
                 {
                     Log("Quality module is null. Skipping settings import");
                     return;
                 }
+
                 enviroManager.Quality.Settings = new EnviroQualities();
+                EnviroQualityUtils.Configure(enviroManager, Quality.Low, AssetBundleName);
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Quality);
                 break;
-            
+
             case "EnviroReflectionsModule":
                 if (!enviroManager.Reflections)
                 {
                     Log("Reflections module is null. Skipping settings import");
                     return;
                 }
+
                 enviroManager.Reflections.Settings = new EnviroReflections();
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Reflections);
                 break;
-            
+
             case "EnviroSkyModule":
                 if (!enviroManager.Sky)
                 {
                     Log("Sky module is null. Skipping settings import");
                     return;
                 }
+
                 EnviroSkyUtils.Configure(enviroManager, AssetBundleName);
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Sky);
                 break;
-            
+
             case "EnviroTimeModule":
                 if (!enviroManager.Time)
                 {
@@ -270,13 +282,14 @@ namespace DaftAppleGames.WeatherMod;
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Time);
                 Log($"Successfully set Time Settings. e.g. {enviroManager.Time.Settings.calenderType}");
                 break;
-            
+
             case "EnviroVolumetricCloudsModule":
                 if (!enviroManager.VolumetricClouds)
                 {
                     Log("Volumetric clouds module is null. Skipping settings import");
                     return;
                 }
+
                 EnviroVolumetricCloudUtils.Configure(enviroManager, AssetBundleName);
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.VolumetricClouds);
                 break;
