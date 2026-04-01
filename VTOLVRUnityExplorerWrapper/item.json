@@ -1,0 +1,14 @@
+﻿{
+  "$schema": "https://gitlab.com/vtolvr-mods/ModLoader/-/raw/release/schema.json",
+  "Title": "Unity Explorer Wrapper",
+  "Description": "Wraps up the standalone Unity Explorer tool for use in VTOL VR",
+  "PreviewImageUrl": "https://github.com/mroshaw/VTOLVRMods/blob/4bfd4c6ce77a6595ba04a984a2ec8477bcfd5c15/Media/UnityExplorerThumbnail.png?raw=true",
+  "Tags": [],
+  "PublishFieldId": 0,
+  "MetaData": {
+    "DllName": "UnityExplorerWrapper.dll",
+    "AllowLoadOnStart": true,
+    "ShowOnMainList": true,
+    "DllHash": "72C2CB9457650EABF3D0AB006115479CAF1E86A2DD629C8DECB7121D797009D6"
+  }
+}
