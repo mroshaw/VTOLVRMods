@@ -3,8 +3,8 @@ This repository contains my collection of mods for the amazing game [VTOL VR](ht
 
 ## Mods
 
-- [VTOLVRUnityExplorerWrapper](https://github.com/mroshaw/VTOLVRMods/tree/main/VTOLVRUnityExplorerWrapper) - wraps the standalone DLL version of the amazing Unity Explorer tool, so it can be loaded as a mod.
-- VTOLVRWeather - replaces the "OverCloud" Sky with "Enviro", to provide enhanced volumetric clouds and weather effects.
+- [VTOLVRUnityExplorerWrapper](https://github.com/mroshaw/VTOLVRMods/tree/main/VTOLVRUnityExplorerWrapper) - wraps the standalone DLL version of the amazing Unity Explorer tool, so it can be loaded as a mod. Note that the mod ships with a [fork](https://github.com/yukieiji/UnityExplorer) of the [original](https://github.com/sinai-dev/UnityExplorer) Unity Explorer, maintained by [yukieiji](https://github.com/yukieiji).
+- VTOLVRWeather - replaces the "OverCloud" Sky with "[Enviro](https://assetstore.unity.com/packages/tools/particles-effects/enviro-3-sky-and-weather-236601)", to provide enhanced volumetric clouds and weather effects.
 
 ## Building
 

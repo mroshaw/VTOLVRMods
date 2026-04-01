@@ -1,0 +1,295 @@
+ManifestFileVersion: 0
+CRC: 247783520
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8446dc28f05693373d9bf1ab259ab1d0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f683c0b16a91a9070a3d31a2775661bf
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 84
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: bfd6cec7710802146be56bb22888bf57, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0081d4f9e5d6e0a4d9fe8e7a8d7256b6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 84329a1a5ad77384a9c3bb7ed65d8506, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5cbac6e678443724c9bd2baf5d564c1d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b3ccdfb360c52f049bf71126aa74826f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0586c1500fad0074693dd4176a399883, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 43b4e18e1baccc642a82a5e642fd6997, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a3e0fff1aca044c40b9f5dc9d0bfaaa3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 375eef0084d44344ebf50cbba7c1eadb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 258de2724c9dfb643a546d0688715ff1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6910768c241d1924f921a3f44198cfe1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 766b1caed0279ea4281500fc502a2853, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cc64ab65e50ce2c4599abae516516185, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 456bf221b186fde4096dcf2c1841b35a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e7aa6806f1fff5b489f26777d053c723, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cfcd10a1b99270a488a19072f6176530, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 07501689299c0de43b5f4c0e6edd5bbd, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4eacb969ef7bfec4ba69d66b0a873f2f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b18a0693e95fd064e9d0a3b96e538236, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 153c2e7862a6cc74c80438e6d8e45aab, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b982c9fba9faf3a43bf4a9e7ced867d7, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2cae96c4b3ef46947a21c9615a74e6e4, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 117
+  Script: {instanceID: 0}
+- Class: 120
+  Script: {instanceID: 0}
+- Class: 182
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 215
+  Script: {instanceID: 0}
+- Class: 73398921
+  Script: {instanceID: 0}
+- Class: 2058629509
+  Script: {instanceID: 0}
+- Class: 2083052967
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroAudio
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroAudioClip
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroAudioOverrideType
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroAurora
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroAuroraQualitySettings
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroCloudGlobalSettings
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroCloudLayerSettings
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroEffectTypes
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroEffects
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroEffectsOverrideType
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroEffectsQualitySettings
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroEnvironment
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroEvents
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroEvents/EnviroActionEvent
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroFlatClouds
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroFlatCloudsQualitySettings
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroFogQualitySettings
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroFogSettings
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroLighting
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroLightning
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroQualities
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroReflections
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroSky
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroSkyQualitySettings
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroTime
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroVolumetricCloudsQuality
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroVolumetricCloudsQualitySettings
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeather
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeAudioOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeAuroraOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeCloudsOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeEffectsOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeEnvironmentOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeFlatCloudsOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeFogOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeLightingOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeLightningOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.EnviroWeatherTypeSkyOverride
+- AssemblyName: Enviro3.Runtime
+  ClassName: Enviro.GeneralObjects
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+Assets:
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_blueNoise2.png
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_curl.png
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/ReflectionProbe/EnviroCubemapBlur.shader
+- Assets/Enviro 3 - Sky and Weather/SFX/Thunder/enviro_thunder_2.wav
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_snow_particles.png
+- Assets/Enviro 3 - Sky and Weather/Textures/cube_enviro_stars.png
+- Assets/_Project/Settings/EnviroEffectsModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/SFX/Weather/enviro_rain_1.wav
+- Assets/Enviro 3 - Sky and Weather/Profiles/Weather Types/Storm.asset
+- Assets/Enviro 3 - Sky and Weather/Profiles/Configurations/Default Enviro Configuration
+  3_3_2.asset
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_detail_noise.jpg
+- Assets/Enviro 3 - Sky and Weather/Profiles/Materials/enviro_rainsplash_mat.mat
+- Assets/_Project/Settings/EnviroQualityHighSettings.json
+- Assets/Enviro 3 - Sky and Weather/SFX/Weather/enviro_rain_2.wav
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Clouds/EnviroVolumetricCloudsBlend.shader
+- Assets/Enviro 3 - Sky and Weather/SFX/Ambient/enviro_ambient_night.ogg
+- Assets/_Project/Settings/EnviroLightingModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Profiles/Quality/Low.asset
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Fog/EnviroHeightFog.shader
+- Assets/Enviro 3 - Sky and Weather/Profiles/Quality/Reflection.asset
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_clouds_detail.asset
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_moon_standard.png
+- Assets/_Project/Settings/EnviroSkyModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Particles/EnviroLightning.shader
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_dust_particles.png
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Clouds/EnviroWeatherMap.shader
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_bottoms.png
+- Assets/_Project/Settings/EnviroFogModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_aurora_layer_2.tga
+- Assets/Enviro 3 - Sky and Weather/Textures/cube_enviro_galaxy.png
+- Assets/Enviro 3 - Sky and Weather/SFX/Thunder/enviro_thunder_7.wav
+- Assets/Enviro 3 - Sky and Weather/Textures/Enviro_Sun_Tex.png
+- Assets/Enviro 3 - Sky and Weather/SFX/Thunder/enviro_thunder_8.wav
+- Assets/_Project/Settings/EnviroVolumetricCloudsModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/SFX/Thunder/enviro_thunder_6.wav
+- Assets/Enviro 3 - Sky and Weather/Profiles/Weather Types/Snow.asset
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_rain_particles.png
+- Assets/Enviro 3 - Sky and Weather/Profiles/Quality/Medium.asset
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Fog/EnviroVolumetrics.shader
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_cirrus.png
+- Assets/_Project/Settings/EnviroAudioModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_moon_bright.png
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_aurora_colorshift.tga
+- Assets/Enviro 3 - Sky and Weather/SFX/Weather/enviro_rain_3.wav
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Clouds/EnviroVolumetricCloudsRaymarch.shader
+- Assets/Enviro 3 - Sky and Weather/Resources/tex_enviro_black.png
+- Assets/Enviro 3 - Sky and Weather/Profiles/Quality/High.asset
+- Assets/_Project/Settings/EnviroQualityMediumSettings.json
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_clouds_base_high.asset
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_flat_detail.png
+- Assets/Enviro 3 - Sky and Weather/SFX/Thunder/enviro_thunder_4.wav
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_aurora_layer_1.tga
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Sky/EnviroSkybox.shader
+- Assets/Enviro 3 - Sky and Weather/Profiles/Weather Types/Cloudy 2.asset
+- Assets/_Project/Settings/EnviroQualityLowSettings.json
+- Assets/Enviro 3 - Sky and Weather/SFX/Thunder/enviro_thunder_1.wav
+- Assets/Enviro 3 - Sky and Weather/Profiles/Materials/enviro_snow_mat.mat
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_rainSplash_particles.png
+- Assets/Enviro 3 - Sky and Weather/SFX/Thunder/enviro_thunder_5.wav
+- Assets/Enviro 3 - Sky and Weather/Profiles/Weather Types/Cloudy 4.asset
+- Assets/Enviro 3 - Sky and Weather/Profiles/Weather Types/Clear Sky.asset
+- Assets/Enviro 3 - Sky and Weather/Profiles/Quality/Insane.asset
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_flat_base.png
+- Assets/_Project/Settings/EnviroTimeModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_noise.png
+- Assets/Enviro 3 - Sky and Weather/SFX/Ambient/enviro_ambient_day.ogg
+- Assets/_Project/Settings/EnviroAuroraModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_blueNoise.png
+- Assets/Enviro 3 - Sky and Weather/Profiles/Weather Types/Cloudy 3.asset
+- Assets/Enviro 3 - Sky and Weather/Profiles/Weather Types/Rain.asset
+- Assets/_Project/Settings/EnviroFlatCloudsModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Profiles/Materials/enviro_lightningFlash_mat.mat
+- Assets/_Project/Prefabs/EnviroSky.prefab
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Particles/EnviroWeatherParticles.shader
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Clouds/EnviroVolumetricCloudsReproject.shader
+- Assets/Enviro 3 - Sky and Weather/Textures/cube_enviro_starsNoise.png
+- Assets/Enviro 3 - Sky and Weather/Profiles/Materials/enviro_lightningBolt_mat.mat
+- Assets/Enviro 3 - Sky and Weather/Profiles/Weather Types/Cloudy 1.asset
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_dithering.png
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Fog/EnviroBilateralBlur.shader
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_moonGlowNew.png
+- Assets/_Project/Settings/EnviroEnvironmentModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Clouds/EnviroApplyShadows.shader
+- Assets/Enviro 3 - Sky and Weather/SFX/Thunder/enviro_thunder_3.wav
+- Assets/Enviro 3 - Sky and Weather/Profiles/Quality/Ultra.asset
+- Assets/_Project/Settings/EnviroWeatherModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/Clouds/EnviroVolumetricCloudsDepth.shader
+- Assets/Enviro 3 - Sky and Weather/Profiles/Weather Types/Foggy.asset
+- Assets/Enviro 3 - Sky and Weather/Resources/Shader/ReflectionProbe/EnviroReflectionProbe.shader
+- Assets/Enviro 3 - Sky and Weather/Profiles/Materials/enviro_rain_mat.mat
+- Assets/_Project/Settings/EnviroQualityUltraSettings.json
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_lightningBolt_particle.png
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_lightningFlash_particle.png
+- Assets/_Project/Settings/EnviroQualityModuleSettings.json
+- Assets/_Project/Settings/EnviroQualityInsaneSettings.json
+- Assets/Enviro 3 - Sky and Weather/Textures/tex_enviro_curl_new.png
+- Assets/_Project/Settings/EnviroReflectionsModuleSettings.json
+- Assets/_Project/Settings/EnviroLightningModuleSettings.json
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_clouds_base.asset
+- Assets/Enviro 3 - Sky and Weather/Textures/enviro_lightning_glow.png
+Dependencies: []

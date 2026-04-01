@@ -1,0 +1,14 @@
+﻿{
+  "$schema": "https://gitlab.com/vtolvr-mods/ModLoader/-/raw/release/schema.json",
+  "Title": "Weather Mod",
+  "Description": "Yet another clouds and weather mod for VTOL VR",
+  "PreviewImageUrl": "https://github.com/mroshaw/VTOLVRMods/blob/19914adff36022e5179e7e59c962244d68df7477/Media/WeatherModThumbnail.png?raw=true",
+  "Tags": [],
+  "PublishFieldId": 0,
+  "MetaData": {
+    "DllName": "WeatherMod.dll",
+    "AllowLoadOnStart": true,
+    "ShowOnMainList": true,
+    "DllHash": ""
+  }
+}

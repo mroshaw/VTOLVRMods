@@ -1,0 +1,17 @@
+{
+    "name": "DaftAppleGames.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:926d21c5269f4044bacdbe86f15c0abc",
+        "GUID:8990947d903fec847b19d9f51781afb1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
