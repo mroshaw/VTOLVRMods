@@ -201,6 +201,7 @@ namespace DaftAppleGames.WeatherMod;
                 }
 
                 enviroManager.FlatClouds.settings = new EnviroFlatClouds();
+                EnviroFlatCloudUtils.Configure(enviroManager, AssetBundleName);
                 JsonUtility.FromJsonOverwrite(settingsText, enviroManager.FlatClouds);
                 break;
 

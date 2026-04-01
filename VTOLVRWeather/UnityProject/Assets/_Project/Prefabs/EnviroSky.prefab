@@ -381,22 +381,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b4e18e1baccc642a82a5e642fd6997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configuration: {fileID: 11400000, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  lastConfiguration: {fileID: 11400000, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Time: {fileID: 3679749505529115402, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Lighting: {fileID: 495546225280835574, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Reflections: {fileID: -3831032795633986024, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Sky: {fileID: -1480058932494092946, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Fog: {fileID: -4569962550386686345, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  VolumetricClouds: {fileID: 9035494006185753007, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  FlatClouds: {fileID: 0}
-  Weather: {fileID: 8956970292728354092, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Aurora: {fileID: 4011421771873438716, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Audio: {fileID: 0}
-  Effects: {fileID: 1501335556145410821, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Lightning: {fileID: -1420550187111102359, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Quality: {fileID: 6421799545293165390, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
-  Environment: {fileID: -545848037823017146, guid: 7a73ce8546b211f40bdf7de5a0f06be5, type: 2}
+  configuration: {fileID: 11400000, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  lastConfiguration: {fileID: 11400000, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Time: {fileID: 3679749505529115402, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Lighting: {fileID: 495546225280835574, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Reflections: {fileID: -3831032795633986024, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Sky: {fileID: -1480058932494092946, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Fog: {fileID: -4569962550386686345, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  VolumetricClouds: {fileID: 9035494006185753007, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  FlatClouds: {fileID: -6856645797116724545, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Weather: {fileID: 8956970292728354092, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Aurora: {fileID: 4011421771873438716, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Audio: {fileID: 2333546472042683326, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Effects: {fileID: 1501335556145410821, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Lightning: {fileID: -1420550187111102359, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Quality: {fileID: 6421799545293165390, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Environment: {fileID: -545848037823017146, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
   Objects:
     sun: {fileID: 7475907864432805082}
     moon: {fileID: 7475907862644309207}

@@ -112,13 +112,13 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 4
       m_NumAlphaKeys: 2
-    flatCloudsLightIntensity: 1.014
-    flatCloudsAmbientIntensity: 1.05
-    flatCloudsShadowIntensity: 0.6
-    flatCloudsShadowSteps: 6
+    flatCloudsLightIntensity: 0.807
+    flatCloudsAmbientIntensity: 1.037
+    flatCloudsShadowIntensity: 1.138
+    flatCloudsShadowSteps: 8
     flatCloudsHGPhase: 0.8
     flatCloudsCoverage: 1.287
-    flatCloudsDensity: 1
+    flatCloudsDensity: 1.252
     flatCloudsAltitude: 1
     flatCloudsTonemapping: 0
     flatCloudsBaseTiling: 1
@@ -128,9 +128,9 @@ MonoBehaviour:
   preset: {fileID: 11400000, guid: 0fcdd472bd6a8ec429fc1e9bc978c4fa, type: 2}
   showCirrusCloudsControls: 0
   show2DCloudsControls: 0
-  cloudFlatBaseAnim: {x: -0.26916638, y: -0.5405989}
-  cloudFlatDetailAnim: {x: 0.44169784, y: -0.18746413}
-  cirrusAnim: {x: 0.7064049, y: 0.8650116}
+  cloudFlatBaseAnim: {x: -0.2725245, y: -0.5190539}
+  cloudFlatDetailAnim: {x: 0.4249089, y: -0.07973828}
+  cirrusAnim: {x: 0.704726, y: 0.87578446}
 --- !u!114 &-6613759932185320841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +329,7 @@ MonoBehaviour:
   showVolumetricsControls: 0
   showUnityFogControls: 0
   fogLights:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1974,7 +1975,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    temperature: 8.778368
+    temperature: 8.778329
     temperatureWeatherMod: 0
     temperatureCustomMod: 0
     temperatureChangingSpeed: 0.1
@@ -4868,8 +4869,8 @@ MonoBehaviour:
   showDensityControls: 0
   showTextureControls: 0
   showWindControls: 0
-  cloudAnimLayer1: {x: -0.7718238, y: 0.58427763, z: -0.21058694}
+  cloudAnimLayer1: {x: -0.7886118, y: 0.69200397, z: -0.91010535}
   cloudAnimLayer2: {x: 0, y: 0, z: 0}
-  cloudAnimNonScaledLayer1: {x: -0.006174564, y: 0.020674476, z: -0.48038664}
+  cloudAnimNonScaledLayer1: {x: -0.006308874, y: 0.021536278, z: -0.50836754}
   cloudAnimNonScaledLayer2: {x: 0, y: 0, z: 0}
   weatherMap: {fileID: 0}
