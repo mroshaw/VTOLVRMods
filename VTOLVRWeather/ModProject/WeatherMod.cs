@@ -15,13 +15,18 @@ namespace DaftAppleGames.WeatherMod;
     internal const string AssetBundleName = "enviroassetbundle";
     private const string SkyPrefabName = "EnviroSky.prefab";
 
+    internal static WeatherMod Instance { get; private set; }
+    
     private GameObject _skyInstance;
+    private EnviroManager _enviroManager;
 
-    /// <summary>
-    /// Init AssetBundles and prepare sky for spawning
-    /// </summary>
     private void Awake()
     {
+        if (!Instance)
+        {
+            Instance = this;
+        }
+        
         Log($"Awake at {ModUtils.ModFolder}");
         ModUtils.LoadAssembly(EnviroAssemblyName);
 
@@ -30,7 +35,6 @@ namespace DaftAppleGames.WeatherMod;
 
         Log($"Getting Sky prefab instance from: {AssetBundleName}");
         GameObject skyPrefab = ModUtils.LoadFromAssetBundle<GameObject>(AssetBundleName, SkyPrefabName);
-        skyPrefab.SetActive(false);
 
         if (!skyPrefab)
         {
@@ -38,37 +42,38 @@ namespace DaftAppleGames.WeatherMod;
             return;
         }
 
-        // Init sky
+        skyPrefab.SetActive(false);
+
         Log("Instantiating Sky instance...");
         _skyInstance = Instantiate(skyPrefab, Vector3.zero, Quaternion.identity);
+        _enviroManager = _skyInstance.GetComponent<EnviroManager>();
+
+        if (!_enviroManager)
+        {
+            LogError("EnviroManager not found! Aborting!");
+            return;
+        }
+
+        if (!ConfigureSky())
+        {
+            LogError("Failed to configure sky! Aborting!");
+            return;
+        }
+
+        Log("Disabling OverCloud...");
+        if (!DisableOverCloud())
+        {
+            LogError("Failed to disable OverCloud! Aborting!");
+            return;
+        }
+
         Log("Setting Sky Instance to active...");
-        if (ConfigureSky())
-        {
-            // _skyInstance.SetActive(true);
-            Log("Sky setup complete");
-        }
-        else
-        {
-            LogError("Failed to setup sky! Prefab instance will not be activated!");
-        }
+        _skyInstance.SetActive(true);
+        Log("Sky setup complete");
     }
 
-    /// <summary>
-    /// Configure the new Sky, replacing the OverCloud sky
-    /// </summary>
-    /// <returns></returns>
-    private bool ConfigureSky()
+    private bool DisableOverCloud()
     {
-        Log("Configuring Sky...");
-        EnviroManager enviroManager = _skyInstance.GetComponent<EnviroManager>();
-        if (!enviroManager)
-        {
-            LogError("EnviroManager not found!");
-            return false;
-        }
-
-        enviroManager.Camera = Camera.main;
-
         OverCloud overCloud = FindFirstObjectByType<OverCloud>();
         if (!overCloud)
         {
@@ -76,246 +81,244 @@ namespace DaftAppleGames.WeatherMod;
             return false;
         }
 
-        GameObject sun = overCloud.transform.Find("Sun").gameObject;
-        GameObject moon = overCloud.transform.Find("Moon").gameObject;
+        overCloud.gameObject.SetActive(false);
+        return true;
+    }
 
-        enviroManager.Objects.directionalLight = sun.GetComponent<Light>();
-        enviroManager.Objects.additionalDirectionalLight = moon.GetComponent<Light>();
-        enviroManager.Objects.sun = sun;
-        enviroManager.Objects.moon = moon;
+    private bool ConfigureSky()
+    {
+        Log("Configuring Sky...");
+
+        if (!ConfigureGeneralSettings())
+            return false;
         
-        EnviroReflectionProbe reflectionProbe = _skyInstance.GetComponentInChildren<EnviroReflectionProbe>(true);
-        enviroManager.Objects.globalReflectionProbe = reflectionProbe;
+        /*
+        if (!ConfigureModules())
+            return false;
+        */
+        
+        Log("Sky configured successfully!");
+        return true;
+    }
 
-        if (!ConfigureEnviroSettings())
+    private bool ConfigureGeneralSettings()
+    {
+        Log("Configuring general settings...");
+
+        _enviroManager.Camera = Camera.main;
+        _enviroManager.Events = new EnviroEvents();
+        _enviroManager.configuration = null;
+
+        Log("Setting Sun, Moon and Stars...");
+        GameObject sun = _enviroManager.transform.Find("Sun").gameObject;
+        GameObject moon = _enviroManager.transform.Find("Moon").gameObject;
+        GameObject stars = _enviroManager.transform.Find("Stars").gameObject;
+
+        if (sun == null || moon == null || stars == null)
         {
+            LogError($"Could not find Sun {sun}, Moon {moon}, or Stars {stars}!");
             return false;
         }
 
-        Log("Sky configured!");
+        _enviroManager.Objects.sun = sun;
+        _enviroManager.Objects.moon = moon;
+        _enviroManager.Objects.stars = stars;
+
+        Log("Setting Directional Light...");
+        _enviroManager.Objects.directionalLight = _enviroManager.GetComponentInChildren<Light>(true);
+
+        Log("Setting Reflection Probe...");
+        _enviroManager.Objects.globalReflectionProbe = _skyInstance.GetComponentInChildren<EnviroReflectionProbe>(true);
+
         return true;
     }
 
-    /// <summary>
-    /// Loads serialized JSON settings from AssetBundle. Required as the settings ScriptableObject instance assets
-    /// from Enviro do not persist properly in AssetBundles
-    /// </summary>
-    private bool ConfigureEnviroSettings()
+    internal bool ConfigureModules()
     {
-        EnviroManager enviroManager = _skyInstance.GetComponent<EnviroManager>();
+        Log("Configuring modules...");
 
-        enviroManager.Events = new EnviroEvents();
-        enviroManager.configuration = null;
+        return
+            ConfigureAudioModule() &&
+            ConfigureAuroraModule() &&
+            ConfigureEffectsModule() &&
+            ConfigureEnvironmentModule() &&
+            ConfigureFlatCloudsModule() &&
+            ConfigureFogModule() &&
+            ConfigureLightingModule() &&
+            ConfigureLightningModule() &&
+            ConfigureQualityModule() &&
+            ConfigureReflectionsModule() &&
+            ConfigureSkyModule() &&
+            ConfigureTimeModule() &&
+            ConfigureVolumetricCloudsModule() &&
+            ConfigureWeatherModule();
+    }
 
-        LoadSettings(enviroManager, typeof(EnviroAudioModule));
-        LoadSettings(enviroManager, typeof(EnviroAuroraModule));
-        LoadSettings(enviroManager, typeof(EnviroEffectsModule));
+    private bool ConfigureAudioModule()
+    {
+        if (_enviroManager.Audio == null)
+            _enviroManager.Audio = ScriptableObject.CreateInstance<EnviroAudioModule>();
 
-        LoadSettings(enviroManager, typeof(EnviroEnvironmentModule));
-        LoadSettings(enviroManager, typeof(EnviroFlatCloudsModule));
-        LoadSettings(enviroManager, typeof(EnviroFogModule));
-        LoadSettings(enviroManager, typeof(EnviroLightingModule));
-        LoadSettings(enviroManager, typeof(EnviroLightningModule));
-        LoadSettings(enviroManager, typeof(EnviroQualityModule));
+        _enviroManager.Audio.Settings = new EnviroAudio();
+        return ApplyJsonSettings(_enviroManager.Audio, "EnviroAudioModuleSettings.json");
+    }
 
-        LoadSettings(enviroManager, typeof(EnviroReflectionsModule));
-        LoadSettings(enviroManager, typeof(EnviroSkyModule));
-        LoadSettings(enviroManager, typeof(EnviroTimeModule));
-        LoadSettings(enviroManager, typeof(EnviroVolumetricCloudsModule));
-        LoadSettings(enviroManager, typeof(EnviroWeatherModule));
+    private bool ConfigureAuroraModule()
+    {
+        if (_enviroManager.Aurora == null)
+            _enviroManager.Aurora = ScriptableObject.CreateInstance<EnviroAuroraModule>();
 
-        Log("Loaded Enviro preset settings successfully!");
-        return true;
+        _enviroManager.Aurora.Settings = new EnviroAurora();
+        return ApplyJsonSettings(_enviroManager.Aurora, "EnviroAuroraModuleSettings.json");
+    }
+
+    private bool ConfigureEffectsModule()
+    {
+        if (_enviroManager.Effects == null)
+            _enviroManager.Effects = ScriptableObject.CreateInstance<EnviroEffectsModule>();
+
+        _enviroManager.Effects.Settings = new EnviroEffects();
+        return ApplyJsonSettings(_enviroManager.Effects, "EnviroEffectsModuleSettings.json");
+    }
+
+    private bool ConfigureEnvironmentModule()
+    {
+        if (_enviroManager.Environment == null)
+            _enviroManager.Environment = ScriptableObject.CreateInstance<EnviroEnvironmentModule>();
+
+        _enviroManager.Environment.Settings = new EnviroEnvironment();
+        return ApplyJsonSettings(_enviroManager.Environment, "EnviroEnvironmentModuleSettings.json");
+    }
+
+    private bool ConfigureFlatCloudsModule()
+    {
+        if (_enviroManager.FlatClouds == null)
+            _enviroManager.FlatClouds = ScriptableObject.CreateInstance<EnviroFlatCloudsModule>();
+
+        _enviroManager.FlatClouds.settings = new EnviroFlatClouds();
+        EnviroFlatCloudUtils.Configure(_enviroManager, AssetBundleName);
+        return ApplyJsonSettings(_enviroManager.FlatClouds, "EnviroFlatCloudsModuleSettings.json");
+    }
+
+    private bool ConfigureFogModule()
+    {
+        if (_enviroManager.Fog == null)
+            _enviroManager.Fog = ScriptableObject.CreateInstance<EnviroFogModule>();
+
+        EnviroFogUtils.Configure(_enviroManager, AssetBundleName);
+        return ApplyJsonSettings(_enviroManager.Fog, "EnviroFogModuleSettings.json");
+    }
+
+    private bool ConfigureLightingModule()
+    {
+        if (_enviroManager.Lighting == null)
+            _enviroManager.Lighting = ScriptableObject.CreateInstance<EnviroLightingModule>();
+
+        EnviroLightingUtils.Configure(_enviroManager);
+        return ApplyJsonSettings(_enviroManager.Lighting, "EnviroLightingModuleSettings.json");
+    }
+
+    private bool ConfigureLightningModule()
+    {
+        if (_enviroManager.Lightning == null)
+            _enviroManager.Lightning = ScriptableObject.CreateInstance<EnviroLightningModule>();
+
+        _enviroManager.Lightning.Settings = new EnviroLightning();
+        return ApplyJsonSettings(_enviroManager.Lightning, "EnviroLightningModuleSettings.json");
+    }
+
+    private bool ConfigureQualityModule()
+    {
+        if (_enviroManager.Quality == null)
+            _enviroManager.Quality = ScriptableObject.CreateInstance<EnviroQualityModule>();
+
+        _enviroManager.Quality.Settings = new EnviroQualities();
+        EnviroQualityUtils.Configure(_enviroManager, Quality.Low, AssetBundleName);
+        return ApplyJsonSettings(_enviroManager.Quality, "EnviroQualityModuleSettings.json");
+    }
+
+    private bool ConfigureReflectionsModule()
+    {
+        if (_enviroManager.Reflections == null)
+            _enviroManager.Reflections = ScriptableObject.CreateInstance<EnviroReflectionsModule>();
+
+        _enviroManager.Reflections.Settings = new EnviroReflections();
+        return ApplyJsonSettings(_enviroManager.Reflections, "EnviroReflectionsModuleSettings.json");
+    }
+
+    private bool ConfigureSkyModule()
+    {
+        if (_enviroManager.Sky == null)
+            _enviroManager.Sky = ScriptableObject.CreateInstance<EnviroSkyModule>();
+
+        EnviroSkyUtils.Configure(_enviroManager, AssetBundleName);
+        return ApplyJsonSettings(_enviroManager.Sky, "EnviroSkyModuleSettings.json");
+    }
+
+    private bool ConfigureTimeModule()
+    {
+        if (_enviroManager.Time == null)
+            _enviroManager.Time = ScriptableObject.CreateInstance<EnviroTimeModule>();
+
+        _enviroManager.Time.Settings = new EnviroTime();
+        return ApplyJsonSettings(_enviroManager.Time, "EnviroTimeModuleSettings.json");
+    }
+
+    private bool ConfigureVolumetricCloudsModule()
+    {
+        if (_enviroManager.VolumetricClouds == null)
+
+            _enviroManager.VolumetricClouds = ScriptableObject.CreateInstance<EnviroVolumetricCloudsModule>();
+
+        EnviroVolumetricCloudUtils.Configure(_enviroManager, AssetBundleName);
+        return ApplyJsonSettings(_enviroManager.VolumetricClouds, "EnviroVolumetricCloudsModuleSettings.json");
+    }
+
+    private bool ConfigureWeatherModule()
+    {
+        if (_enviroManager.Weather == null)
+            _enviroManager.Weather = ScriptableObject.CreateInstance<EnviroWeatherModule>();
+
+        _enviroManager.Weather.Settings = new EnviroWeather();
+        return ApplyJsonSettings(_enviroManager.Weather, "EnviroWeatherModuleSettings.json");
     }
 
     /// <summary>
-    /// Loads a module settings instance from a JSON file supplied in the AssetBundle
+    /// Checks that a module is not null
     /// </summary>
-    private void LoadSettings(EnviroManager enviroManager, System.Type moduleType)
+    private bool CheckModule(object module, string moduleName)
     {
-        if (!enviroManager)
+        if (module == null)
         {
-            LogError("EnviroManager is NULL!");
-            return;
+            LogError($"{moduleName} module is null!");
+            return false;
         }
 
-        // Derive settings file from module type
-        string moduleName = moduleType.ToString().Replace("Enviro.", "");
-        string settingsFileName = moduleName + "Settings.json";
+        return true;
+    }
 
-        Log($"Loading {moduleName} settings from: {settingsFileName}");
+    /// <summary>
+    /// Loads JSON settings from AssetBundle and applies them to the given module
+    /// </summary>
+    private bool ApplyJsonSettings(object module, string settingsFileName)
+    {
+        Log($"Loading settings from: {settingsFileName}");
         TextAsset jsonAsset = ModUtils.LoadFromAssetBundle<TextAsset>(AssetBundleName, settingsFileName);
-        Log($"Successfully loaded JSON. Deserializing {moduleName}");
 
-        // Strip asset references to avoid NREs on load
-        string settingsText = StripAssetReferences(jsonAsset.text);
-
-        switch (moduleName)
+        if (!jsonAsset)
         {
-            case "EnviroAudioModule":
-                if (!enviroManager.Audio)
-                {
-                    Log("Audio module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.Audio.Settings = new EnviroAudio();
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Audio);
-                break;
-
-            case "EnviroAuroraModule":
-                if (!enviroManager.Aurora)
-                {
-                    Log("Aurora module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.Aurora.Settings = new EnviroAurora();
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Aurora);
-                break;
-
-            case "EnviroEffectsModule":
-                if (!enviroManager.Effects)
-                {
-                    Log("Effects module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.Effects.Settings = new EnviroEffects();
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Effects);
-                break;
-
-            case "EnviroEnvironmentModule":
-                if (!enviroManager.Environment)
-                {
-                    Log("Environment module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.Environment.Settings = new EnviroEnvironment();
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Environment);
-                break;
-
-            case "EnviroFlatCloudsModule":
-                if (!enviroManager.FlatClouds)
-                {
-                    Log("FlatClouds module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.FlatClouds.settings = new EnviroFlatClouds();
-                EnviroFlatCloudUtils.Configure(enviroManager, AssetBundleName);
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.FlatClouds);
-                break;
-
-            case "EnviroFogModule":
-                if (!enviroManager.Fog)
-                {
-                    Log("Fog module is null. Skipping settings import");
-                    return;
-                }
-
-                EnviroFogUtils.Configure(enviroManager, AssetBundleName);
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Fog);
-                break;
-
-            case "EnviroLightingModule":
-                if (!enviroManager.Lighting)
-                {
-                    Log("Lighting module is null. Skipping settings import");
-                    return;
-                }
-
-                EnviroLightingUtils.Configure(enviroManager);
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Lighting);
-                break;
-
-            case "EnviroLightningModule":
-                if (!enviroManager.Lightning)
-                {
-                    Log("Lightning module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.Lightning.Settings = new EnviroLightning();
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Lightning);
-                break;
-
-            case "EnviroQualityModule":
-                if (!enviroManager.Quality)
-                {
-                    Log("Quality module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.Quality.Settings = new EnviroQualities();
-                EnviroQualityUtils.Configure(enviroManager, Quality.Low, AssetBundleName);
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Quality);
-                break;
-
-            case "EnviroReflectionsModule":
-                if (!enviroManager.Reflections)
-                {
-                    Log("Reflections module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.Reflections.Settings = new EnviroReflections();
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Reflections);
-                break;
-
-            case "EnviroSkyModule":
-                if (!enviroManager.Sky)
-                {
-                    Log("Sky module is null. Skipping settings import");
-                    return;
-                }
-
-                EnviroSkyUtils.Configure(enviroManager, AssetBundleName);
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Sky);
-                break;
-
-            case "EnviroTimeModule":
-                if (!enviroManager.Time)
-                {
-                    Log("Time module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.Time.Settings = new EnviroTime();
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Time);
-                Log($"Successfully set Time Settings. e.g. {enviroManager.Time.Settings.calenderType}");
-                break;
-
-            case "EnviroVolumetricCloudsModule":
-                if (!enviroManager.VolumetricClouds)
-                {
-                    Log("Volumetric clouds module is null. Skipping settings import");
-                    return;
-                }
-
-                EnviroVolumetricCloudUtils.Configure(enviroManager, AssetBundleName);
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.VolumetricClouds);
-                break;
-            case "EnviroWeatherModule":
-                if (!enviroManager.Weather)
-                {
-                    Log("Weather module is null. Skipping settings import");
-                    return;
-                }
-
-                enviroManager.Weather.Settings = new EnviroWeather();
-                JsonUtility.FromJsonOverwrite(settingsText, enviroManager.Weather);
-                break;
-            default:
-                LogError($"Unknown module name: {moduleName}");
-                break;
+            LogError($"Failed to load {settingsFileName} from AssetBundle!");
+            return false;
         }
+
+        string settingsText = StripAssetReferences(jsonAsset.text);
+        JsonUtility.FromJsonOverwrite(settingsText, module);
+        Log($"Successfully applied settings from {settingsFileName}");
+        return true;
     }
 
     private string StripAssetReferences(string json)
     {
-        // Replace {"instanceID":XXXXXX} with {"instanceID":0} to null out asset references
         return System.Text.RegularExpressions.Regex.Replace(
             json,
             @"\{""instanceID"":-?\d+\}",
@@ -323,9 +326,6 @@ namespace DaftAppleGames.WeatherMod;
         );
     }
 
-    /// <summary>
-    /// Clean up when mod is unloaded
-    /// </summary>
     public override void UnLoad()
     {
         if (_skyInstance != null)

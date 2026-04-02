@@ -22,8 +22,7 @@ public static class EnviroLightingUtils
         enviroManager.Lighting.Settings.ambientIntensityCurve = new AnimationCurve();
 
         enviroManager.Lighting.Settings.sunColorGradient = new Gradient();
-        enviroManager.Lighting.Settings.sunColorGradient = new Gradient();
-        enviroManager.Lighting.Settings.sunColorGradient = new Gradient();
+        enviroManager.Lighting.Settings.moonColorGradient = new Gradient();
 
         enviroManager.Lighting.Settings.ambientSkyColorGradient = new Gradient();
         enviroManager.Lighting.Settings.ambientEquatorColorGradient = new Gradient();

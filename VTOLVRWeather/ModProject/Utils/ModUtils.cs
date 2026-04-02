@@ -70,7 +70,7 @@ public static class ModUtils
         T asset = assetBundle.LoadAsset<T>(assetName);
         if (!asset)
         {
-            LogError($"Could not load asset: {assetName}");
+            LogWarn($"Could not load asset: {assetName}");
             return null;
         }
 
