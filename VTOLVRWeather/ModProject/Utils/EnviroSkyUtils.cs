@@ -43,4 +43,10 @@ public static class EnviroSkyUtils
         enviroManager.Sky.Settings.moonGlowTex =
             ModUtils.LoadFromAssetBundle<Texture2D>(assetBundleName, "tex_enviro_moonGlowNew");
     }
+
+    public static void PostConfigure(EnviroManager enviroManager)
+    {
+        Log("Forcing SkyBox update...");
+        enviroManager.Sky.Settings.forcedSkyboxSetup = true;
+    }
 }

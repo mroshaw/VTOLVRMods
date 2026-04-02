@@ -16,9 +16,14 @@ namespace DaftAppleGames.WeatherMod;
     private const string SkyPrefabName = "EnviroSky.prefab";
 
     internal static WeatherMod Instance { get; private set; }
-    
+
     private GameObject _skyInstance;
     private EnviroManager _enviroManager;
+
+    private OverCloud _overCloud;
+    private EnvironmentManager _environmentManager;
+    private Light _overCloudSunLight;
+    private Light _overCloudMoonLight;
 
     private void Awake()
     {
@@ -26,12 +31,19 @@ namespace DaftAppleGames.WeatherMod;
         {
             Instance = this;
         }
-        
+
         Log($"Awake at {ModUtils.ModFolder}");
         ModUtils.LoadAssembly(EnviroAssemblyName);
 
         Harmony harmony = new Harmony("com.DaftAppleGames.VtolWeatherMod");
         harmony.PatchAll();
+
+        Log("Getting references...");
+        if (!FindReferences())
+        {
+            LogError("Could not find OverCloud or EnvironmentManager. Aborting!");
+            return;
+        }
 
         Log($"Getting Sky prefab instance from: {AssetBundleName}");
         GameObject skyPrefab = ModUtils.LoadFromAssetBundle<GameObject>(AssetBundleName, SkyPrefabName);
@@ -60,10 +72,23 @@ namespace DaftAppleGames.WeatherMod;
             return;
         }
 
+        if (!ConfigureModules())
+        {
+            LogError("Failed to initially configure modules!");
+            return;
+        }
+
         Log("Disabling OverCloud...");
         if (!DisableOverCloud())
         {
             LogError("Failed to disable OverCloud! Aborting!");
+            return;
+        }
+
+        Log("Configuring Main Camera");
+        if (!ConfigureCamera(Camera.main))
+        {
+            LogError("Failed to configure camera! Aborting!");
             return;
         }
 
@@ -72,16 +97,98 @@ namespace DaftAppleGames.WeatherMod;
         Log("Sky setup complete");
     }
 
-    private bool DisableOverCloud()
+    /// <summary>
+    /// Find and set existing sky related references
+    /// </summary>
+    /// <returns></returns>
+    private bool FindReferences()
     {
-        OverCloud overCloud = FindFirstObjectByType<OverCloud>();
-        if (!overCloud)
+        _overCloud = FindFirstObjectByType<OverCloud>();
+        if (!_overCloud)
         {
             LogError("OverCloud not found!");
             return false;
         }
 
-        overCloud.gameObject.SetActive(false);
+        _environmentManager = FindFirstObjectByType<EnvironmentManager>();
+        if (!_environmentManager)
+        {
+            LogError("EnvironmentManager not found!");
+            return false;
+        }
+
+        _overCloudSunLight = _overCloud.m_OverCloudSun._light;
+        if (!_overCloudSunLight)
+        {
+            LogError("Could not find overCloud sunlight!");
+            return false;
+        }
+
+        _overCloudMoonLight = _overCloud.m_OverCloudMoon._light;
+        if (!_overCloudMoonLight)
+        {
+            LogWarn("Could not find overCloudMoonlight!");
+        }
+
+        return true;
+    }
+
+    private bool DisableOverCloud()
+    {
+        Log("Disabling OverCloud...");
+        _overCloud.gameObject.SetActive(false);
+
+        Log("Disabling EnvironmentManager...");
+        _environmentManager.gameObject.SetActive(false);
+
+        Log("Done disabling OverCloud!");
+        return true;
+    }
+
+    private bool ConfigureCamera(Camera camera)
+    {
+        if (!camera)
+        {
+            LogError("Camera is null!");
+            return false;
+        }
+
+        Log($"Configuring Camera: {camera.gameObject.name}");
+        SetupOCOnCamera ocSetup = camera.GetComponent<SetupOCOnCamera>();
+        if (ocSetup)
+        {
+            Log("Disabling SetupOCOnCamera...");
+            ocSetup.enabled = false;
+        }
+
+        OverCloudCamera ocCamera = camera.GetComponent<OverCloudCamera>();
+        if (ocCamera)
+        {
+            Log("Disabling OverCloudCamera...");
+            ocCamera.enabled = false;
+        }
+
+        CameraFogSettings fogSettings = camera.GetComponent<CameraFogSettings>();
+        if (fogSettings)
+        {
+            Log("Disabling CameraFogSettings....");
+            fogSettings.enabled = false;
+        }
+
+        if (!camera.TryGetComponent<EnviroRenderer>(out EnviroRenderer enviroRenderer))
+        {
+            enviroRenderer = camera.gameObject.AddComponent<EnviroRenderer>();
+            Log("Added EnviroRenderer to camera");
+        }
+
+        if (!enviroRenderer)
+        {
+            LogError("Failed to add EnviroRenderer to camera!");
+            return false;
+        }
+
+        Log("Camera configuration complete!");
+
         return true;
     }
 
@@ -91,19 +198,21 @@ namespace DaftAppleGames.WeatherMod;
 
         if (!ConfigureGeneralSettings())
             return false;
-        
-        /*
-        if (!ConfigureModules())
-            return false;
-        */
-        
+
         Log("Sky configured successfully!");
         return true;
     }
 
+    /// <summary>
+    /// Sets high level EnviroManager parameters
+    /// </summary>
     private bool ConfigureGeneralSettings()
     {
         Log("Configuring general settings...");
+
+        Log("Setting Configuration...");
+        _enviroManager.configuration =
+            ModUtils.LoadFromAssetBundle<EnviroConfiguration>(AssetBundleName, "EnviroSettings.asset");
 
         _enviroManager.Camera = Camera.main;
         _enviroManager.Events = new EnviroEvents();
@@ -126,6 +235,8 @@ namespace DaftAppleGames.WeatherMod;
 
         Log("Setting Directional Light...");
         _enviroManager.Objects.directionalLight = _enviroManager.GetComponentInChildren<Light>(true);
+        _enviroManager.Objects.directionalLight.cullingMask = _overCloudSunLight.cullingMask;
+        _enviroManager.Objects.directionalLight.renderingLayerMask = _overCloudSunLight.cullingMask;
 
         Log("Setting Reflection Probe...");
         _enviroManager.Objects.globalReflectionProbe = _skyInstance.GetComponentInChildren<EnviroReflectionProbe>(true);
@@ -252,7 +363,13 @@ namespace DaftAppleGames.WeatherMod;
             _enviroManager.Sky = ScriptableObject.CreateInstance<EnviroSkyModule>();
 
         EnviroSkyUtils.Configure(_enviroManager, AssetBundleName);
-        return ApplyJsonSettings(_enviroManager.Sky, "EnviroSkyModuleSettings.json");
+        if (!ApplyJsonSettings(_enviroManager.Sky, "EnviroSkyModuleSettings.json"))
+        {
+            return false;
+        }
+
+        EnviroSkyUtils.PostConfigure(_enviroManager);
+        return true;
     }
 
     private bool ConfigureTimeModule()
@@ -260,8 +377,14 @@ namespace DaftAppleGames.WeatherMod;
         if (_enviroManager.Time == null)
             _enviroManager.Time = ScriptableObject.CreateInstance<EnviroTimeModule>();
 
-        _enviroManager.Time.Settings = new EnviroTime();
-        return ApplyJsonSettings(_enviroManager.Time, "EnviroTimeModuleSettings.json");
+        EnviroTimeUtils.Configure(_enviroManager);
+        if (!ApplyJsonSettings(_enviroManager.Time, "EnviroTimeModuleSettings.json"))
+        {
+            return false;
+        }
+
+        EnviroTimeUtils.PostConfigure(_enviroManager);
+        return true;
     }
 
     private bool ConfigureVolumetricCloudsModule()

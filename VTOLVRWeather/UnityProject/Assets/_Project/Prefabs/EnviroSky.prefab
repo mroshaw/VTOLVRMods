@@ -252,7 +252,7 @@ ReflectionProbe:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7475907864545930164}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Type: 0
   m_Mode: 2
@@ -348,7 +348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7630744500229940108
 Transform:
   m_ObjectHideFlags: 0
@@ -387,16 +387,16 @@ MonoBehaviour:
   Lighting: {fileID: 495546225280835574, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
   Reflections: {fileID: -3831032795633986024, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
   Sky: {fileID: -1480058932494092946, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
-  Fog: {fileID: -4569962550386686345, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Fog: {fileID: 0}
   VolumetricClouds: {fileID: 9035494006185753007, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
   FlatClouds: {fileID: -6856645797116724545, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
-  Weather: {fileID: 8956970292728354092, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
-  Aurora: {fileID: 4011421771873438716, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
-  Audio: {fileID: 2333546472042683326, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
-  Effects: {fileID: 1501335556145410821, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
-  Lightning: {fileID: -1420550187111102359, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Weather: {fileID: 0}
+  Aurora: {fileID: 0}
+  Audio: {fileID: 0}
+  Effects: {fileID: 0}
+  Lightning: {fileID: 0}
   Quality: {fileID: 6421799545293165390, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
-  Environment: {fileID: -545848037823017146, guid: 8f47ac684ae0d8e4c9f1bb5a3e8401c3, type: 2}
+  Environment: {fileID: 0}
   Objects:
     sun: {fileID: 7475907864432805082}
     moon: {fileID: 7475907862644309207}
