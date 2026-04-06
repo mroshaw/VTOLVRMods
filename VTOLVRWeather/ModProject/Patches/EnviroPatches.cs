@@ -3,7 +3,8 @@ using HarmonyLib;
 
 namespace DaftAppleGames.WeatherMod.Patches;
 
-[HarmonyPatch(typeof(EnviroManagerBase))] public class EnviroPatches
+[HarmonyPatch(typeof(EnviroManagerBase))]
+public class EnviroPatches
 {
     [HarmonyPatch(nameof(EnviroManagerBase.StartModules))]
     [HarmonyPrefix]
